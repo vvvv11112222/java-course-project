@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<!-- 修复后的现代化登录界面设计 -->
+<VBox fx:id="vbox" alignment="CENTER" spacing="30" maxWidth="400" minWidth="350"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.teach.javafx.controller.base.LoginController">
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40" />
+    </padding>
+
+    <!-- 品牌区域 -->
+    <HBox alignment="CENTER" spacing="20" VBox.vgrow="NEVER">
+        <ImageView fitHeight="100" fitWidth="100" preserveRatio="true" pickOnBounds="true">
+            <image>
+                <Image url="@../picture/logo.jpg" />
+            </image>
+        </ImageView>
+        <Label text="教学管理系统">
+            <font>
+                <Font size="24" />
+            </font>
+            <padding>
+                <Insets left="10" />
+            </padding>
+        </Label>
+    </HBox>
+
+    <!-- 表单区域 -->
+    <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 5);">
+        <Label text="欢迎登录" textFill="#333333">
+            <font>
+                <Font size="18" />
+            </font>
+        </Label>
+
+        <GridPane hgap="15" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="30" />
+                <ColumnConstraints percentWidth="70" />
+            </columnConstraints>
+
+            <!-- 用户名行 -->
+            <Label text="用户名" textFill="#555555" alignment="CENTER_RIGHT" GridPane.columnIndex="0">
+                <padding>
+                    <Insets right="10" />
+                </padding>
+            </Label>
+            <TextField fx:id="usernameField" promptText="请输入用户名" style="-fx-background-radius: 5; -fx-padding: 8; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-border-width: 1;" GridPane.columnIndex="1">
+                <padding>
+                    <Insets right="10" />
+                </padding>
+            </TextField>
+
+            <!-- 密码行 -->
+            <Label text="密码" textFill="#555555" alignment="CENTER_RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <padding>
+                    <Insets right="10" />
+                </padding>
+            </Label>
+            <PasswordField fx:id="passwordField" promptText="请输入密码" style="-fx-background-radius: 5; -fx-padding: 8; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-border-width: 1;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <padding>
+                    <Insets right="10" />
+                </padding>
+            </PasswordField>
+        </GridPane>
+
+        <!-- 登录按钮 -->
+        <Button fx:id="loginButton" onAction="#onLoginButtonClick" text="登录"
+                onMouseEntered="#onButtonHover"
+                onMouseExited="#onButtonExit"
+                style="-fx-background-color: #4a86e8; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;">
+            <padding>
+                <Insets top="5" />
+            </padding>
+        </Button>
+    </VBox>
+
+    <!-- 底部信息 -->
+    <Label text="© 2025 教学管理系统 | 版本 1.0.0" textFill="#888888" style="-fx-font-size: 12px;" VBox.vgrow="NEVER" />
+</VBox>

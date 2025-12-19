@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: #f8f9fa;" fx:controller="com.teach.javafx.controller.VolunteeringController">
+    <top>
+        <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);">
+            <Label text="志愿活动管理" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Label text="活动编号:" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                <TextField fx:id="numField" promptText="输入活动编号" prefWidth="150" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 8;"/>
+                <Label text="活动名称:" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                <TextField fx:id="nameField" promptText="输入活动名称" prefWidth="180" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 8;"/>
+            </HBox>
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button fx:id="addButton" text="添加志愿活动" onAction="#onAddButtonClick" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 10 20; -fx-cursor: hand;"/>
+                <Button fx:id="queryButton" text="查询志愿活动" onAction="#onQueryButtonClick" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 10 20; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <TableView fx:id="dataTableView" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);">
+            <columns>
+                <TableColumn fx:id="numColumn" prefWidth="180.0" text="活动编号" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                <TableColumn fx:id="nameColumn" prefWidth="250.0" text="活动名称" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                <TableColumn fx:id="operateColumn" prefWidth="180.0" text="操作" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+            </columns>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <BorderPane.margin>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </BorderPane.margin>
+        </TableView>
+    </center>
+</BorderPane>

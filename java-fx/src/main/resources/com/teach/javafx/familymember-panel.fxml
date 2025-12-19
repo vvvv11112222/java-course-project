@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: #f8f9fa;" fx:controller="com.teach.javafx.controller.FamilyMemberController"
+            minWidth="800" prefWidth="1000">
+   <top>
+        <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);"
+              minWidth="800" prefWidth="1000">
+            <!-- 标题区域 -->
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <children>
+                    <Label text="家庭信息管理" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="管理学生家庭成员信息" style="-fx-font-size: 12; -fx-text-fill: #7f8c8d;"/>
+                </children>
+            </HBox>
+
+            <!-- 操作区域 -->
+            <HBox spacing="8" alignment="CENTER_LEFT" prefHeight="50">
+                <children>
+                    <Button onAction="#onAddButtonClick" text="添加成员"
+                            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Button onAction="#onDeleteButtonClick" text="删除成员"
+                            style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="关系/姓名:" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12;" />
+                    <TextField fx:id="relationNameTextField" promptText="输入关系或姓名" prefWidth="120" maxWidth="120"
+                               style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 4; -fx-font-size: 12;"/>
+                    <Button onAction="#onQueryButtonClick" text="查询" prefWidth="50" maxWidth="50"
+                            style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 6 8; -fx-cursor: hand; -fx-font-size: 12;"/>
+                </children>
+            </HBox>
+        </VBox>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.72" style="-fx-background-color: transparent;">
+        <BorderPane.margin>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </BorderPane.margin>
+        <items>
+            <TableView fx:id="dataTableView" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);">
+                <columns>
+                    <TableColumn fx:id="relationColumn" prefWidth="120.0" text="关系" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                    <TableColumn fx:id="nameColumn" prefWidth="120.0" text="姓名" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                    <TableColumn fx:id="genderColumn" prefWidth="80.0" text="性别" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                    <TableColumn fx:id="phoneColumn" prefWidth="130.0" text="电话" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                    <TableColumn fx:id="ageColumn" prefWidth="80.0" text="年龄" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                    <TableColumn fx:id="unitColumn" prefWidth="200.0" text="单位" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                </columns>
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </TableView>
+            <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);">
+                <padding>
+                    <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                </padding>
+
+                <!-- 表单标题 -->
+                <Label text="家庭成员信息编辑" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+                <GridPane hgap="12.0" vgap="8.0" style="-fx-padding: 5;">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="80.0" prefWidth="90.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="200.0" prefWidth="220.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="28.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="28.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="28.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="28.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="28.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="28.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="35.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="关系:" style="-fx-font-weight: bold; -fx-text-fill: #555;" GridPane.rowIndex="0" />
+                        <TextField fx:id="relationField" promptText="请输入关系" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                   style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 6;"/>
+
+                        <Label text="姓名:" style="-fx-font-weight: bold; -fx-text-fill: #555;" GridPane.rowIndex="1" />
+                        <TextField fx:id="nameField" promptText="请输入姓名" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                                   style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 6;"/>
+
+                        <Label text="性别:" style="-fx-font-weight: bold; -fx-text-fill: #555;" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="genderComboBox" promptText="请选择性别" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                                  style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 5;"/>
+
+                        <Label text="年龄:" style="-fx-font-weight: bold; -fx-text-fill: #555;" GridPane.rowIndex="3" />
+                        <TextField fx:id="ageField" promptText="请输入年龄" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                                   style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 6;"/>
+
+                        <Label text="电话:" style="-fx-font-weight: bold; -fx-text-fill: #555;" GridPane.rowIndex="4" />
+                        <TextField fx:id="phoneField" promptText="请输入电话号码" GridPane.columnIndex="1" GridPane.rowIndex="4"
+                                   style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 6;"/>
+
+                        <Label text="单位:" style="-fx-font-weight: bold; -fx-text-fill: #555;" GridPane.rowIndex="5" />
+                        <TextField fx:id="unitField" promptText="请输入工作单位" GridPane.columnIndex="1" GridPane.rowIndex="5"
+                                   style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 6;"/>
+
+                        <!-- 操作按钮区域 -->
+                        <HBox spacing="12" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="6"
+                              style="-fx-padding: 10 0 0 0;">
+                            <children>
+                                <Button onAction="#onSaveButtonClick" text="保存成员信息"
+                                        style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 20; -fx-cursor: hand;"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </GridPane>
+            </VBox>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>

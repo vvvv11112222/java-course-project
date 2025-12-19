@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: #f5f7fa;" fx:controller="com.teach.javafx.controller.HomeworkController">
+   <top>
+      <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #e1e8ed; -fx-border-width: 0 0 1 0;">
+         <children>
+            <!-- 紧凑标题区域 -->
+            <HBox alignment="CENTER_LEFT" spacing="8">
+               <children>
+                  <Label text="📚" style="-fx-font-size: 20;"/>
+                  <Label text="作业管理" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                  <Region HBox.hgrow="ALWAYS"/>
+                  <Label text="管理学生作业信息" style="-fx-font-size: 12; -fx-text-fill: #7f8c8d;"/>
+               </children>
+            </HBox>
+
+            <!-- 紧凑查询区域 -->
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: #f8f9fa; -fx-padding: 10; -fx-background-radius: 6; -fx-border-color: #e9ecef; -fx-border-width: 1; -fx-border-radius: 6;">
+               <children>
+                  <Label text="🔍" style="-fx-font-size: 14;"/>
+                  <Label text="查询:" style="-fx-font-weight: bold; -fx-text-fill: #495057; -fx-font-size: 12;" />
+                  <TextField fx:id="numNameTextField" promptText="学号、姓名、课程编号或名称" prefWidth="250"
+                             style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ced4da; -fx-padding: 6; -fx-font-size: 12;"/>
+                  <Button fx:id="queryButton" text="查询" onAction="#onQueryButtonClick"
+                          style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 6 12; -fx-cursor: hand; -fx-font-size: 12;"/>
+               </children>
+            </HBox>
+
+            <!-- 紧凑添加作业区域 -->
+            <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-background-color: #f8f9fa; -fx-padding: 8; -fx-background-radius: 6; -fx-border-color: #e9ecef; -fx-border-width: 1; -fx-border-radius: 6;">
+               <children>
+                  <Label text="➕" style="-fx-font-size: 12;"/>
+                  <Label text="学生:" style="-fx-font-weight: bold; -fx-text-fill: #495057; -fx-font-size: 11;" />
+                  <ComboBox fx:id="studentComboBox" prefWidth="120" promptText="选择学生"
+                            style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ced4da; -fx-padding: 3; -fx-font-size: 10;"/>
+
+                  <Label text="课程:" style="-fx-font-weight: bold; -fx-text-fill: #495057; -fx-font-size: 11;" />
+                  <ComboBox fx:id="courseComboBox" prefWidth="120" promptText="选择课程"
+                            style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ced4da; -fx-padding: 3; -fx-font-size: 10;"/>
+
+                  <Label text="内容:" style="-fx-font-weight: bold; -fx-text-fill: #495057; -fx-font-size: 11;" />
+                  <TextArea fx:id="contentTextArea" promptText="作业内容..." prefWidth="150" prefHeight="25" wrapText="true"
+                            style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ced4da; -fx-padding: 3; -fx-font-size: 10;"/>
+
+                  <Label text="截止:" style="-fx-font-weight: bold; -fx-text-fill: #495057; -fx-font-size: 11;" />
+                  <DatePicker fx:id="dueDatePicker" prefWidth="100"
+                              style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ced4da; -fx-font-size: 10;"/>
+
+                  <ComboBox fx:id="hourComboBox" prefWidth="45"
+                            style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ced4da; -fx-font-size: 10;"/>
+                  <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #6c757d; -fx-font-size: 11;"/>
+                  <ComboBox fx:id="minuteComboBox" prefWidth="45"
+                            style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ced4da; -fx-font-size: 10;"/>
+
+                  <ComboBox fx:id="statusComboBox" prefWidth="70" value="未提交"
+                            style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ced4da; -fx-font-size: 10;"/>
+
+                  <Button fx:id="addButton" text="添加" onAction="#onAddButtonClick"
+                          style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 4 8; -fx-cursor: hand; -fx-font-size: 10;"/>
+                  <Button fx:id="clearButton" text="清空" onAction="#onClearButtonClick"
+                          style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 4 8; -fx-cursor: hand; -fx-font-size: 10;"/>
+               </children>
+            </HBox>
+
+
+
+         </children>
+      </VBox>
+   </top>
+   
+   <center>
+      <!-- 表格区域 -->
+      <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #e9ecef; -fx-border-width: 1; -fx-border-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 2);" VBox.vgrow="ALWAYS">
+         <children>
+            <!-- 表格标题和工具栏 -->
+            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 0 0 10 0;">
+               <children>
+                  <Label text="📋" style="-fx-font-size: 20;"/>
+                  <Label text="作业列表" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                  <Region HBox.hgrow="ALWAYS"/>
+                  <Label fx:id="totalCountLabel" text="共 0 条记录" style="-fx-font-size: 14; -fx-text-fill: #6c757d; -fx-background-color: #f8f9fa; -fx-padding: 5 10; -fx-background-radius: 15;"/>
+                  <Button fx:id="refreshListButton" text="🔄 刷新列表" onAction="#onRefreshListButtonClick"
+                          style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 5 10; -fx-cursor: hand; -fx-font-size: 12;"/>
+               </children>
+            </HBox>
+
+            <!-- 表格 -->
+            <TableView fx:id="dataTableView" VBox.vgrow="ALWAYS"
+                       style="-fx-background-color: transparent; -fx-border-color: #dee2e6; -fx-border-width: 1; -fx-border-radius: 6;"
+                       prefHeight="600" minHeight="500">
+               <columns>
+                  <TableColumn fx:id="studentNumColumn" prefWidth="80.0" minWidth="60.0" text="学号" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="studentNameColumn" prefWidth="80.0" minWidth="60.0" text="姓名" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="classNameColumn" prefWidth="100.0" minWidth="80.0" text="班级" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="majorColumn" prefWidth="120.0" minWidth="100.0" text="专业" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="courseNameColumn" prefWidth="140.0" minWidth="120.0" text="课程名称" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="contentColumn" prefWidth="200.0" minWidth="150.0" text="作业内容" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="assignTimeColumn" prefWidth="120.0" minWidth="100.0" text="布置时间" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="dueTimeColumn" prefWidth="120.0" minWidth="100.0" text="截止时间" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="statusColumn" prefWidth="80.0" minWidth="60.0" text="状态" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                  <TableColumn fx:id="operateColumn" prefWidth="140.0" minWidth="120.0" text="操作" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+
+            <!-- 表格底部信息栏 -->
+            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10 0 0 0; -fx-border-color: #e9ecef; -fx-border-width: 1 0 0 0;">
+               <children>
+                  <Label text="💡" style="-fx-font-size: 14;"/>
+                  <Label text="提示：双击表格行可快速编辑，右键可查看更多操作" style="-fx-font-size: 12; -fx-text-fill: #6c757d;"/>
+                  <Region HBox.hgrow="ALWAYS"/>
+                  <Label fx:id="lastUpdateLabel" text="最后更新：--" style="-fx-font-size: 11; -fx-text-fill: #adb5bd;"/>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="10" right="15" bottom="15" left="15"/>
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

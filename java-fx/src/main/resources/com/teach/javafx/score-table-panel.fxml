@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: #f8f9fa;" fx:controller="com.teach.javafx.controller.ScoreTableController"
+            minWidth="800" prefWidth="1000">
+   <top>
+        <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);"
+              minWidth="800" prefWidth="1000">
+            <!-- 标题区域 -->
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <children>
+                    <Label text="成绩管理" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="管理学生课程成绩信息" style="-fx-font-size: 12; -fx-text-fill: #7f8c8d;"/>
+                </children>
+            </HBox>
+
+            <!-- 操作区域 -->
+            <HBox spacing="8" alignment="CENTER_LEFT" prefHeight="50">
+                <children>
+                    <Button onAction="#onAddButtonClick" text="添加成绩"
+                            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Button onAction="#onEditButtonClick" text="修改成绩"
+                            style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Button onAction="#onDeleteButtonClick" text="删除成绩"
+                            style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 8 16; -fx-cursor: hand;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="学生:" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12;" />
+                    <ComboBox fx:id="studentComboBox" promptText="选择学生" prefWidth="120"
+                              style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 4; -fx-font-size: 12;"/>
+                    <Label text="课程:" style="-fx-font-weight: bold; -fx-text-fill: #555; -fx-font-size: 12;" />
+                    <ComboBox fx:id="courseComboBox" promptText="选择课程" prefWidth="120"
+                              style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #ddd; -fx-padding: 4; -fx-font-size: 12;"/>
+                    <Button onAction="#onQueryButtonClick" text="查询" prefWidth="50"
+                            style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 6 8; -fx-cursor: hand; -fx-font-size: 12;"/>
+                </children>
+            </HBox>
+        </VBox>
+   </top>
+   <center>
+        <TableView fx:id="dataTableView" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);">
+            <columns>
+                <TableColumn fx:id="studentNumColumn" prefWidth="130.0" text="学号" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                <TableColumn fx:id="studentNameColumn" prefWidth="100.0" text="姓名" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                <TableColumn fx:id="classNameColumn" prefWidth="150.0" text="班级" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                <TableColumn fx:id="courseNumColumn" prefWidth="130.0" text="课程号" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                <TableColumn fx:id="courseNameColumn" prefWidth="150.0" text="课程名" style="-fx-alignment: CENTER-LEFT; -fx-font-weight: bold;" />
+                <TableColumn fx:id="creditColumn" prefWidth="80.0" text="学分" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                <TableColumn fx:id="markColumn" prefWidth="80.0" text="成绩" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                <TableColumn fx:id="editColumn" prefWidth="80.0" text="操作" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+            </columns>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <BorderPane.margin>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </BorderPane.margin>
+        </TableView>
+   </center>
+</BorderPane>
